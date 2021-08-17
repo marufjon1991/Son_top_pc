@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Aug 17 10:21:41 2021
+
+@author: dudu
+"""
+
+import random
+def sontop(x=10):
+    print(f"Keling {x} gacha son topish o'yini o'ynaymiz! ")
+    son = random.randint(1,x)
+    print("Men bir son o'yladim. Taxmin qilib ko'ring: ")
+    taxminlar = 1
+    while True:
+        user = int(input("\n>>> "))
+        if son > user:
+            print(f"Men o'ylagan son {user} dan kattaroq, yana taxmin qilib ko'ring:  ")
+            taxminlar += 1
+        elif son < user:
+            print(f"Men o'ylagan son {user} dan kichikroq, yana taxmin qilib ko'ring: ")
+            taxminlar += 1
+        else:
+            break
+    print(f"Ofarin! Siz to'g'ri topdingiz! {taxminlar} ta taxmin bilan topdingiz! ")
+    return taxminlar
+
+def sontop_pc(x=10):
+    print("Endi siz son o'ylang men topaman! ")
+    input("Istalgan tugmani bosing: ")
+    min = 1
+    max = x
+    taxminlar = 1
+    while True:
+        if min != max:
+            son = random.randint(min,max)
+        else:
+            son = min
+        user = input(f"Siz {son} sonini o'ylagan edingizmi? "
+                     f" Agar to'g'ri bo'lsa 'yes' deb yozing, "
+                     f" agar siz o'ylagan son {son} dan  katta bo'lsa '+' ,"
+                     f" kichik bo'lsa '-' ni bosing! ")
+        if user == '+':
+            min = son + 1
+            taxminlar += 1
+        elif user == '-':
+            max = son - 1
+            taxminlar += 1
+        elif user == 'yes':
+            break 
+    print(f"{taxminlar} ta taxmin bilan topdim! ")
+    return taxminlar
+
+
+def play(x=10):
+    while True:
+        taxminlar_user = sontop(x)
+        taxminlar_pc = sontop_pc(x)
+        if taxminlar_user > taxminlar_pc:
+            print("Men yutdim!")
+        elif taxminlar_user < taxminlar_pc:
+            print("Siz yutdingiz!")
+        else: 
+            print("O'yin durang bo'ldi")
+        javob = input("O'yinni davom ettirasizmi yes/no: ")
+        if javob == 'no':
+            break
+    
+play()
